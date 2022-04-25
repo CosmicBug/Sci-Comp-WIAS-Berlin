@@ -68,31 +68,25 @@ function create_system(grid; m = 2, unknown_storage = :sparse)
 	return system
 end
 
+# ╔═╡ c07f65be-63e3-42c1-afc6-cf6a52bc6d35
+norm([2, 3])
+
+# ╔═╡ fe23f61f-9488-4fdd-87b0-d0907c6ef9b0
+function barenblatt_iniv(coordinates...; t=0.01, M=2)
+	Γ = 1.0
+	dimensions = length(coordinates)
+	α = 1.0 /(M - 1.0 + 2.0/dimensions)
+	# collect the coordinates tuple to perform operations on it
+	r = LinearAlgebra.norm(collect(coordinates)) 
+	z = max(0., t^(-α)*(Γ-(α*(M-1.)*r^2.)/(2. * dimensions*M*t^(2. *α/dimensions)))^(1. /(M-1.)))
+	
+	return z
+end
+
 # ╔═╡ 1699dde6-f137-4d76-beb6-6d28457d49f6
 function solve_system(grid, system; t0 = 0.01, tstep = 0.001, tend = 0.1)
 	
 	enable_species!(system, 1, [1])
-	
-	# inival ---------------------------
-	function barenblatt_iniv(x; t = 0.01, M = 2, dims = 1)  # Method for 1D grid
-   
-	    Γ = 1.
-		α = 1. /(M - 1.0 + 2.0/dims)
-		r = abs(x)
-	
-	    z = max(0., t^(-α)*(Γ-(α*(M-1.)*r^2.)/(2. *dims*M*t^(2. *α/dims)))^(1. /(M-1.)))
-		return z
-	end
-
-	function barenblatt_iniv(x, y; t = 0.01, M = 2 , dims = 2) # Method for 2D grid
-	
-	    Γ = 1.
-		α = 1. /(M - 1.0 + 2.0/dims)
-		r = sqrt(x^2. + y^2.)
-	
-	    z = max(0., t^(-α)*(Γ-(α*(M-1.)*r^2.)/(2. *dims*M*t^(2. *α/dims)))^(1. /(M-1.)))
-		return z
-	end
 	
 	inival = unknowns(system)
     inival[1, :] .= map(barenblatt_iniv, grid) # Map initial conditions onto the grid
@@ -203,6 +197,9 @@ cgrad([:white,:black])
 
 # ╔═╡ e71ef56e-e354-4c93-8960-2934cd0c3fd1
 md" $t = t_0$ $\hspace{270px}$ t → $\hspace{270px}$ $t = t_{end}$ "
+
+# ╔═╡ 21b845c2-472b-441f-98d6-2db70fa0be38
+
 
 # ╔═╡ 90c601de-e6e8-4e4c-8876-56a436a38fd4
 begin 
@@ -1640,6 +1637,8 @@ version = "0.9.1+5"
 # ╟─364363a6-92b6-4927-890c-a73efe5cb022
 # ╠═11beb896-b7f4-4d5c-88e7-69cd24103314
 # ╠═f6424ae1-bace-4970-971c-e195ea70ba5a
+# ╠═c07f65be-63e3-42c1-afc6-cf6a52bc6d35
+# ╠═fe23f61f-9488-4fdd-87b0-d0907c6ef9b0
 # ╠═1699dde6-f137-4d76-beb6-6d28457d49f6
 # ╠═f828e694-a2af-4e7e-9be9-ed858fdfad01
 # ╟─4bb2602f-b1ae-445d-9161-ef354b28aff5
@@ -1653,6 +1652,7 @@ version = "0.9.1+5"
 # ╟─f186475b-7d52-40ae-8c77-127b4187e6da
 # ╟─527c20d5-65a1-4899-b81a-2f87c7f3bd50
 # ╟─e71ef56e-e354-4c93-8960-2934cd0c3fd1
-# ╟─90c601de-e6e8-4e4c-8876-56a436a38fd4
+# ╠═21b845c2-472b-441f-98d6-2db70fa0be38
+# ╠═90c601de-e6e8-4e4c-8876-56a436a38fd4
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
