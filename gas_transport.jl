@@ -72,8 +72,8 @@ end
 norm([2, 3])
 
 # ╔═╡ fe23f61f-9488-4fdd-87b0-d0907c6ef9b0
-function barenblatt_iniv(coordinates...; t=0.01, M=2)
-	Γ = 1.0
+function canonical_barenblatt_iniv(coordinates...; t=0.01, M=2)
+	Γ = 0.2
 	dimensions = length(coordinates)
 	α = 1.0 /(M - 1.0 + 2.0/dimensions)
 	# collect the coordinates tuple to perform operations on it
@@ -89,8 +89,8 @@ function solve_system(grid, system; t0 = 0.01, tstep = 0.001, tend = 0.1)
 	enable_species!(system, 1, [1])
 	
 	inival = unknowns(system)
-    inival[1, :] .= map(barenblatt_iniv, grid) # Map initial conditions onto the grid
-	# end inival ---------------------------
+    inival[1, :] .= map(canonical_barenblatt_iniv, grid) # Map initial conditions onto the grid
+	
 
 	# control ------------------------------
 	control = VoronoiFVM.SolverControl()
@@ -152,16 +152,11 @@ begin
 	for i in 1:length(time_sol_2d.t) #192   for n=20
 			s = 0
 		
-			for k in 1:length(time_sol_1d.u[1]) # 41
-	
+			for k in 1:length(time_sol_1d.u[1]) # 41	
 				for j in 1:length(time_sol_1d.u[1]) #41
-					
 					s = s+1
-					
 					plotMat[i, k , j] = time_sol_2d[i][s]
-				
-				end
-			
+				end	
 			end
 	
 	end
@@ -176,10 +171,13 @@ black = cgrad([:black,:black]); # Gradient to color surface plot
 md" ## 2D System"
 
 # ╔═╡ 7381062e-49cb-4807-9a53-2e27b4da52e2
+# ╠═╡ disabled = true
+#=╠═╡
 begin
 	vis2d_1 = GridVisualizer(Plotter = Plots)	
 	gridplot!(vis2d_1, grid2d, title="2D grid", legend=:rt, show = true)
 end
+  ╠═╡ =#
 
 # ╔═╡ 1e66c7e6-f02a-4b51-9760-a1770502fadc
 time_step = @bind time_step Slider(1:length(time_sol_2d), show_value = true)
@@ -199,19 +197,43 @@ cgrad([:white,:black])
 md" $t = t_0$ $\hspace{270px}$ t → $\hspace{270px}$ $t = t_{end}$ "
 
 # ╔═╡ 21b845c2-472b-441f-98d6-2db70fa0be38
-
+function get_initial_index(n)
+	index = round(length(time_sol_2d.t) - n*(length(time_sol_2d.t)/5))
+	return Int64(index)
+end
 
 # ╔═╡ 90c601de-e6e8-4e4c-8876-56a436a38fd4
 begin 
-	
-	plot(
-		plotMat[1,:,:], alpha = 0.1, st= :surface, c = black, label ="1", xlabel = "x",xticks = false , ylabel = "y", yticks = false, zlabel = "z", zticks = false, title = "Space-time 2D gas transport", legend = false, size = (500,500)
+
+   plot(
+        plotMat[1, :, :], alpha = 0.1, st=:surface, 
+		c = black, label ="1", 
+		xlabel = "x", xticks = false, 
+		ylabel = "y", yticks = false, 
+		zlabel = "z", zticks = false, 
+		title = "Space-time 2D gas transport", legend = false, size = (500, 500)
+    	)
+   plot!(
+		plotMat[get_initial_index(4), :, :],
+		alpha = 0.2, st=:surface, c = black
 		)
-	plot!(plotMat[50,:,:], alpha = 0.2, st= :surface, c = black, label ="50")
-	plot!(plotMat[100,:,:], alpha = 0.25, st = :surface, c = black, label = "100")
-	plot!(plotMat[150,:,:], alpha = 0.3, st = :surface, c = black, label = "150")
-	plot!(plotMat[170,:,:], alpha = 0.4, st = :surface, c = black, label = "170")
-	plot!(plotMat[180,:,:], alpha = 0.5, st= :surface, c = black, label ="50")
+    plot!(
+        plotMat[get_initial_index(3), :, :], 
+		alpha = 0.25, st = :surface, c = black
+		)
+    plot!(
+        plotMat[get_initial_index(2), :, :], 
+		alpha = 0.3, st = :surface, c = black
+		)
+    plot!(
+        plotMat[get_initial_index(1), :, :], 
+		alpha = 0.35, st = :surface, c = black
+		)
+    plot!(
+        plotMat[get_initial_index(0), :, :], 
+		alpha = 0.4, st= :surface, c = black
+		)
+
 
 end
 
@@ -1644,10 +1666,10 @@ version = "0.9.1+5"
 # ╟─4bb2602f-b1ae-445d-9161-ef354b28aff5
 # ╟─00c435b7-899a-49c9-9c57-3e0024b71179
 # ╠═c666ae1b-1146-46eb-aac1-c513ef87a3f4
-# ╟─3e0f1b81-27aa-4cd3-a07d-329b07add8b0
+# ╠═3e0f1b81-27aa-4cd3-a07d-329b07add8b0
 # ╟─ab96db7f-6bdc-40e4-b283-4638ab926423
 # ╟─a09ed607-04fd-49f8-8ab6-59fdfd301673
-# ╟─7381062e-49cb-4807-9a53-2e27b4da52e2
+# ╠═7381062e-49cb-4807-9a53-2e27b4da52e2
 # ╟─1e66c7e6-f02a-4b51-9760-a1770502fadc
 # ╟─f186475b-7d52-40ae-8c77-127b4187e6da
 # ╟─527c20d5-65a1-4899-b81a-2f87c7f3bd50
