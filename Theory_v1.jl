@@ -82,12 +82,105 @@ Forward & Backward approximation are $O(\Delta x)$, 1st order accurate.
 
 """
 
+# ╔═╡ 58caa6ec-067c-4067-ac78-b8fc0c43cd7f
+md"""
+#### 1D - Porus medium Equation
+
+Implicit Euler time step - for stability reasons
+
+$$\frac{\partial \:u}{\partial \:t}\:=\:\frac{\partial ^2\:u^m}{\partial \:x^2}\:\:$$
+
+
+
+"""
+
+# ╔═╡ 2f86725e-174e-415f-a14a-acdc751fd5ee
+md"""
+
+Implicit Euler time step
+
+[Def. A formulation inclusing more than 1 unknown in a Finite difference eq.]
+
+Using the 'Backward difference' for time steps to rvaluate the equation.
+
+$$\frac{\:u_x^{t+1}-u^t_x}{\Delta t\:}\:=\frac{\left(u^m\right)_{x+1}^{t+1}\:-2\cdot \left(u^m\right)_x^{t+1}+\left(u^m\right)_{x-1}^{t+1}\:\:}{\Delta x^2}$$
+
+Super-scripts represent time steps and sub-script represent spacial steps
+
+### Add 1D-stencil here
+
+
+
+Since this equation at one step calculation needs, 2 unknowns from current time step and 1 unknows from previous time step. Hence we couple these unknows with other equations in the grid by writing the formula for all the grid points. Eventually this gives us a tridiagonal coeeficient matrix, with 3 coefficients rows.
+
+$$\begin{pmatrix}\frac{-1}{\Delta \:x^2}&\frac{1}{\Delta \:x^2}&0&0&.&.&\\ \frac{1}{\Delta x^2}&\frac{-2}{\Delta \:x^2}&\frac{1}{\Delta \:x^2}&0&.&&\\ 0&.&\frac{-2}{\Delta \:\:x^2}&.&.&&\\ .&.&.&.&.&&\\ .&.&.&.&.&&\\ &&&&&&\\ &&&&&&\end{pmatrix}$$
+
+Since we are using the implicit time steps, each time step can then be solved lineraly
+
+"""
+
+# ╔═╡ 3f8b0d2a-8385-4346-bb63-ef43aa518e8a
+md"""
+###### Crank - Nicholson method
+
+Essentially the average of - explicit and implicit methods - useful in Heat eq.s etc.
+
+since we dont need this - fuck this shit
+"""
+
+# ╔═╡ 8d6a8d1c-b8b6-439b-8e8a-a40d07f6be7b
+md"""
+#### Stability 
+
+$O(x)"$ Truncation errro 
+$A$ is the coefficient matrix shown above
+
+$$O\left(x\right)=\:A\cdot u\:-\frac{\partial u}{\partial t}$$
+
+$e\::\:sol.\:error\:=Exact\:sol.\:-\:Numerical\:sol.$
+
+$A\cdot e\:=\:O\left(x\right)$
+
+$\left|e\right|\le \:\left|A^{-1}\right|\cdot \:\left|O\left(x\right)\right|$
+
+Hence the stability condition here is if Norm of Matrix 'A' is indpendent or decreses with $\Delta x$ error should dicrease with increasing grid resolution.
+
+"""
+
+# ╔═╡ 270eb0fc-ee2e-4e1f-afe3-44f8de88dfad
+
+
+# ╔═╡ ef6ec3c8-b919-4b76-b989-201959a065d8
+
+
+# ╔═╡ cc4a8fbf-09f7-4dcd-9eb4-e50c312d0043
+md"""
+
+"""
+
+# ╔═╡ 106a7dcf-a8d8-439f-a252-48576fa55332
+
+
+# ╔═╡ cfa82c87-1e81-4088-9f97-0e687aa73bb3
+
+
+# ╔═╡ d134c526-d3af-4471-bf37-8192358f97cb
+
+
+# ╔═╡ ab722b02-d4ba-4c20-9856-52cd2d848425
+
+
+# ╔═╡ 7ac1c018-6554-42be-b0bb-8bd733c0f149
+md"""
+### Everything below is useless
+"""
+
 # ╔═╡ 7faff9e6-e2c9-46bc-a619-d24562a77f6c
 md"""
 ---------------------------
 
 
-Numerical discritization should be adequate for the physcil process - convection, Diffution, unstedyness
+Numerical discritization should be adequate for the physical process.
 
 
 ###### 1D Linear convection
@@ -256,21 +349,6 @@ md"""
 # Solution & Visualization
 """
 
-# ╔═╡ 00000000-0000-0000-0000-000000000001
-PLUTO_PROJECT_TOML_CONTENTS = """
-[deps]
-"""
-
-# ╔═╡ 00000000-0000-0000-0000-000000000002
-PLUTO_MANIFEST_TOML_CONTENTS = """
-# This file is machine-generated - editing it directly is not advised
-
-julia_version = "1.7.2"
-manifest_format = "2.0"
-
-[deps]
-"""
-
 # ╔═╡ Cell order:
 # ╟─ced78960-c791-11ec-161b-1f991bc68368
 # ╟─3f0722a2-057a-4e66-8789-c8deafcaf187
@@ -280,6 +358,18 @@ manifest_format = "2.0"
 # ╟─122ae3fe-7016-4dd0-8dd2-45f6709f49c1
 # ╟─652a5dab-aac6-449e-b67a-9cc74a05d5a7
 # ╟─3f151f74-ef4e-4e73-90af-9092fb1db61b
+# ╟─58caa6ec-067c-4067-ac78-b8fc0c43cd7f
+# ╟─2f86725e-174e-415f-a14a-acdc751fd5ee
+# ╟─3f8b0d2a-8385-4346-bb63-ef43aa518e8a
+# ╟─8d6a8d1c-b8b6-439b-8e8a-a40d07f6be7b
+# ╠═270eb0fc-ee2e-4e1f-afe3-44f8de88dfad
+# ╠═ef6ec3c8-b919-4b76-b989-201959a065d8
+# ╠═cc4a8fbf-09f7-4dcd-9eb4-e50c312d0043
+# ╠═106a7dcf-a8d8-439f-a252-48576fa55332
+# ╠═cfa82c87-1e81-4088-9f97-0e687aa73bb3
+# ╠═d134c526-d3af-4471-bf37-8192358f97cb
+# ╠═ab722b02-d4ba-4c20-9856-52cd2d848425
+# ╠═7ac1c018-6554-42be-b0bb-8bd733c0f149
 # ╟─7faff9e6-e2c9-46bc-a619-d24562a77f6c
 # ╟─53c875da-2213-4352-aecd-33885215e34f
 # ╟─303d54da-39ab-43a9-a6ca-1bb516f6c20d
@@ -293,5 +383,3 @@ manifest_format = "2.0"
 # ╠═eb5f23e2-9579-4b17-aaba-75af37054102
 # ╠═792981cf-c29e-4ded-8ef3-0f90067a5f00
 # ╟─efdc4683-8592-453f-8a2d-a13916555686
-# ╟─00000000-0000-0000-0000-000000000001
-# ╟─00000000-0000-0000-0000-000000000002
