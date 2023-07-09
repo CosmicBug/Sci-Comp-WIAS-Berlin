@@ -7,6 +7,9 @@ Solving Porous medium partial differential equation with Finite Volume Method. S
 Evolution of the Barenblat function
 
 1 Dimensional
+
+<img src="https://user-images.githubusercontent.com/38491149/166873345-0438136e-7f96-4602-ae4e-70ac3bc5ead8.png" alt="drawing" width="200"/>
+
 ![image](https://user-images.githubusercontent.com/38491149/166873345-0438136e-7f96-4602-ae4e-70ac3bc5ead8.png)
 
 
