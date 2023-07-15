@@ -11,25 +11,15 @@ Evolution of the Barenblat functions,
 
 <img src="https://user-images.githubusercontent.com/38491149/166873513-2a391cfa-9ebf-4994-a6fb-ed3a5020f843.png" alt="drawing" width="500"/>
 
-<img src="
-  https://user-images.githubusercontent.com/38491149/166873579-e2f26c60-e8f4-4cdb-99d4-fe1faaafea3b.png
-  " alt="drawing" width="500"/>
-<img src="
-  https://user-images.githubusercontent.com/38491149/166873614-dc4a8347-d9cb-4932-bbe8-89845b8acc8f.png
-  " alt="drawing" width="500"/>
-<img src="
-  https://user-images.githubusercontent.com/38491149/166873645-c38394a1-4d69-443f-8df7-9b9a4809ef1c.png
-  " alt="drawing" width="500"/>
+<img src="https://user-images.githubusercontent.com/38491149/166873579-e2f26c60-e8f4-4cdb-99d4-fe1faaafea3b.png" alt="drawing" width="500"/>
+<img src="https://user-images.githubusercontent.com/38491149/166873614-dc4a8347-d9cb-4932-bbe8-89845b8acc8f.png" alt="drawing" width="500"/>
+<img src="https://user-images.githubusercontent.com/38491149/166873645-c38394a1-4d69-443f-8df7-9b9a4809ef1c.png" alt="drawing" width="500"/>
 
 
 *Graphs from comparitive error analysis*
 
-<img src="
-  https://user-images.githubusercontent.com/38491149/166873797-62c6c680-5487-4107-84a1-ee76046570be.png
-  " alt="drawing" width="500"/>
-<img src="
-  https://user-images.githubusercontent.com/38491149/166873825-5b282abb-d24f-44e0-ac27-14208634c1e0.png
-  " alt="drawing" width="500"/>
+<img src="https://user-images.githubusercontent.com/38491149/166873797-62c6c680-5487-4107-84a1-ee76046570be.png" alt="drawing" width="500"/>
+<img src="https://user-images.githubusercontent.com/38491149/166873825-5b282abb-d24f-44e0-ac27-14208634c1e0.png" alt="drawing" width="500"/>
 
 Credits for the course and the VoronoiFVM package 
 
