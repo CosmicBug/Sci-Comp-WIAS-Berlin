@@ -5,8 +5,9 @@
 This project uses Finite Volume Method with the VoronoiFVM.jl package, to solve the Porous medium partial differential equation. Aditionally the method is reimplemeted using the Differentialequations.jl package to make performace comparisons.
 
 *Evolution of the Barenblat function*
-
+<p align="center">
 <img src="https://user-images.githubusercontent.com/38491149/166873345-0438136e-7f96-4602-ae4e-70ac3bc5ead8.png" alt="drawing" width="500"/>
+<p>
 
 **The 1D grid and the evolution of the initial conditions on it.**
 <p align="center">
@@ -16,8 +17,7 @@ This project uses Finite Volume Method with the VoronoiFVM.jl package, to solve 
 **The 2D grid and the evolution of the initial conditions on it.**
 
 <p align="center">
-  
-<img src="https://user-images.githubusercontent.com/38491149/166873579-e2f26c60-e8f4-4cdb-99d4-fe1faaafea3b.png" alt="drawing" width="300"/> <img src="https://user-images.githubusercontent.com/38491149/166873614-dc4a8347-d9cb-4932-bbe8-89845b8acc8f.png" alt="drawing" width="300"/>
+<img src="https://user-images.githubusercontent.com/38491149/166873579-e2f26c60-e8f4-4cdb-99d4-fe1faaafea3b.png" alt="drawing" width="300"/><img src="https://user-images.githubusercontent.com/38491149/166873614-dc4a8347-d9cb-4932-bbe8-89845b8acc8f.png" alt="drawing" width="300"/>
 <p>
 
 *The 3D projection of the evolution observed on the above heat map*
